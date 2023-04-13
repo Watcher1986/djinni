@@ -1,0 +1,109 @@
+input[data-input='search'] {
+  padding-left: 36px !important;
+}
+
+form[data-form='search-form'] {
+  position: relative;
+  max-width: 546px;
+  flex-grow: 1;
+}
+
+nav[data-box='mobro'] {
+}
+
+.navbar {
+  padding: 0 198px;
+}
+
+div[data-control='control'] {
+  width: 65% !important;
+}
+
+span[data-icon='sidebar'] {
+  background-color: #ed7135;
+}
+
+span[data-icon='search'] {
+  z-index: 10;
+  left: 10px;
+  line-height: 0;
+}
+
+.navbar-nav {
+  width: 35%;
+  height: 71px;
+  line-height: 71px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+button[data-btn='signin'] {
+  width: fit-content;
+  white-space: nowrap;
+  font-weight: 400;
+  font-size: 16px;
+  background: transparent;
+  color: #666;
+  border: none;
+  box-shadow: none;
+}
+
+select[data-select='lang'] {
+  color: #666 !important;
+  text-align: left;
+  font-weight: 400;
+  font-size: 16px;
+  padding: 6px 30px 6px 0;
+  width: fit-content;
+  box-shadow: none;
+}
+
+.form-control {
+  background-color: #eee;
+  color: #666;
+}
+
+.active {
+  border-bottom: 2px solid #ed7135;
+}
+
+@media (max-width: 992px) {
+  .navbar {
+    padding: 0;
+    font-size: large;
+    background: #ed7135 !important;
+  }
+  .navbar-nav {
+    display: contents;
+    line-height: 60px;
+  }
+  .form-select {
+    background-color: #ed7135;
+  }
+  .nav-icon {
+    height: 50px;
+    width: 50px;
+  }
+  nav[data-box='mobro'] {
+    display: flex !important;
+  }
+  div[data-control='control'] {
+    flex-direction: column !important;
+    margin: 16px 0;
+    gap: 24px !important;
+  }
+  /* .navbar-expand-lg,
+  .navbar-togler {
+    display: none;
+  } */
+  /* .navbar-toggler,
+  .navbar-expand-lg {
+    display: none !important;
+  } */
+  /* .navbar-colapse,
+  .colapse {
+    display: flex !important;
+  } */
+}
