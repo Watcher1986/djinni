@@ -1,0 +1,64 @@
+span[data-icon='sidenav'] {
+  line-height: 0;
+  left: 12px;
+}
+
+a[data-link='sidenav'] {
+  cursor: pointer;
+  padding-left: 44px;
+  color: #666;
+}
+
+div[data-tab='sidenav'] {
+  height: 40px;
+}
+
+.active-recent-icon {
+  color: white !important;
+  background: #ed7135;
+
+  a {
+    color: white;
+
+    * path {
+      stroke: white;
+    }
+  }
+}
+
+.active-selfie-icon {
+  color: white !important;
+  background: #ed7135;
+
+  a {
+    color: white;
+
+    svg {
+      :not(:first-child) {
+        fill: white;
+      }
+      :first-child {
+        stroke: white;
+      }
+    }
+  }
+}
+
+.active-nav-icon {
+  color: white !important;
+  background: #ed7135;
+
+  a {
+    color: white;
+
+    * path {
+      fill: white;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  #sidenav {
+    display: none !important;
+  }
+}

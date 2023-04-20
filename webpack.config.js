@@ -8,7 +8,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './src/js/main.js',
+  entry: './src/main.js',
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
@@ -62,3 +62,18 @@ module.exports = {
     ],
   },
 };
+
+// "devDependencies": {
+//   "autoprefixer": "^10.4.14",
+//   "clean-webpack-plugin": "^4.0.0",
+//   "css-loader": "^6.7.3",
+//   "html-webpack-plugin": "^5.5.0",
+//   "mini-css-extract-plugin": "^2.7.5",
+//   "postcss-loader": "^7.2.4",
+//   "sass": "^1.61.0",
+//   "sass-loader": "^13.2.2",
+//   "style-loader": "^3.3.2",
+//   "webpack": "^5.78.0",
+//   "webpack-cli": "^5.0.1",
+//   "webpack-dev-server": "^4.13.2"
+// }
