@@ -6,17 +6,20 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
+const mode = process.env.NODE_ENV || 'development';
+
 module.exports = {
-  mode: 'development',
+  mode,
   entry: './src/main.js',
   output: {
-    filename: 'main.js',
+    filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
   devServer: {
     static: path.resolve(__dirname, 'dist'),
     port: 3001,
     hot: true,
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({ template: './src/index.html' }),

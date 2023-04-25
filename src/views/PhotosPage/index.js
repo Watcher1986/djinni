@@ -1,17 +1,26 @@
-import '../../components/sidenav';
+import AbstractView from '../AbstractView/index.js';
+// import '../../components/sidenav.js';
 import { ContentCard } from '../../components/contentCard';
 import { getPhotos } from '../../api/photos';
+import { AppLayout } from '../../layout/appLayout';
 
-export const PhotosPage = async () => {
-  document.title = 'Photos';
+export default class PhotosView extends AbstractView {
+  constructor(params) {
+    super(params);
+    this.setTitle('Photos');
+  }
 
-  const photos = await getPhotos();
-  const photosList = photos.map((photo) => ContentCard(photo)).join('');
+  async getViewPhotos() {
+    const photos = await getPhotos();
+    return photos;
+  }
 
-  return `
-  <section class="d-flex w-100 justify-content-between">
-    <side-navbar id="sidenav" class="w-25"></side-navbar>
-    <section class="d-flex flex-column" data-box="content">
+  async getHtml() {
+    const photos = await this.getViewPhotos();
+
+    const photosList = photos.map((photo) => ContentCard(photo)).join('');
+
+    const template = () => `
       <article class="d-flex justify-content-between align-items-center">
         <div>
           <h1>All photos</h1>
@@ -28,10 +37,15 @@ export const PhotosPage = async () => {
       <section class="d-grid gap-3 mt-4" data-box="list">${
         photosList ?? null
       }</section>
-    </section>
-  </section>
-`;
-};
+    `;
+    return AppLayout(template);
+  }
+  // document.title = 'Photos';
+
+  // const photos = await getPhotos();
+
+  // return AppLayout(template);
+}
 
 // const iconsClasses = {
 //   allResourses: 'active-nav-icon',
