@@ -26,19 +26,6 @@ class HeaderNavbar extends HTMLElement {
 
     linksList[0].classList.add('active-sidebar-icon');
 
-    // linksList.forEach((link) =>
-    //   link.addEventListener('click', (e) => {
-    //     e.preventDefault();
-
-    //     linksList.forEach((tab) => {
-    //       tab.classList.toggle(
-    //         iconsClasses[e.currentTarget.name],
-    //         tab === link.parentElement
-    //       );
-    //     });
-
-    //   })
-    // );
     linksList.forEach((link) =>
       link.addEventListener('click', (e) => {
         e.preventDefault();
@@ -61,10 +48,6 @@ class HeaderNavbar extends HTMLElement {
       })
     );
   }
-  async getHeaderNav() {
-    console.log(this);
-    return this;
-  }
 }
 
-window.customElements.define('top-navi', HeaderNavbar);
+window.customElements.define('top-nav', HeaderNavbar);

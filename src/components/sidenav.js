@@ -10,44 +10,39 @@ const iconsClasses = {
   deleted: 'active-nav-icon',
 };
 
+const sidenavTemplate = `
+  <div class="position-relative py-2 rounded-3" data-tab="sidenav">
+    <a class="nav-link fw-bolder" href="${
+      location.pathname.split('/')[1]
+    }" name="allResourses" data-link="sidenav"><span class="position-absolute lh-0 top-50 translate-middle-y" data-icon="sidenav">${allResoursesIcon()}</span>All photos</a>
+  </div>
+  <div class="position-relative py-2 rounded-3" data-tab="sidenav">
+    <a class="nav-link fw-bolder" href=${`/
+      ${location.pathname.split('/')[1]}/selfies
+    `} name="selfie" data-link="sidenav"><span class="position-absolute lh-0 top-50 translate-middle-y" style="left: 9px" data-icon="sidenav">${selfieIcon()}</span>Selfies</a>
+  </div>
+  <div class="position-relative py-2 rounded-3" data-tab="sidenav">
+    <a class="nav-link fw-bolder" name="recent" data-link="sidenav"><span class="position-absolute lh-0 top-50 translate-middle-y" data-icon="sidenav">${recentIcon()}</span>Recent</a>
+  </div>
+  <div class="position-relative py-2 rounded-3" data-tab="sidenav">
+    <a class="nav-link fw-bolder" name="deleted" data-link="sidenav"><span class="position-absolute lh-0 top-50 translate-middle-y" data-icon="sidenav">${basketIcon()}</span>Deleted</a>
+  </div>
+`;
+
 class SideNavbar extends HTMLElement {
   constructor() {
     super();
-    this.innerHTML = `
-      <div class="position-relative py-2 rounded-3" data-tab="sidenav">
-        <a class="nav-link fw-bolder" name="allResourses" data-link="sidenav"><span class="position-absolute lh-0 top-50 translate-middle-y" data-icon="sidenav">${allResoursesIcon()}</span>All photos</a>
-      </div>
-      <div class="position-relative py-2 rounded-3" data-tab="sidenav">
-        <a class="nav-link fw-bolder" name="selfie" data-link="sidenav"><span class="position-absolute lh-0 top-50 translate-middle-y" style="left: 9px" data-icon="sidenav">${selfieIcon()}</span>Selfies</a>
-      </div>
-      <div class="position-relative py-2 rounded-3" data-tab="sidenav">
-        <a class="nav-link fw-bolder" name="recent" data-link="sidenav"><span class="position-absolute lh-0 top-50 translate-middle-y" data-icon="sidenav">${recentIcon()}</span>Recent</a>
-      </div>
-      <div class="position-relative py-2 rounded-3" data-tab="sidenav">
-        <a class="nav-link fw-bolder" name="deleted" data-link="sidenav"><span class="position-absolute lh-0 top-50 translate-middle-y" data-icon="sidenav">${basketIcon()}</span>Deleted</a>
-      </div>
-    `;
+    this.innerHTML = sidenavTemplate;
 
     const linksList = this.querySelectorAll('[data-link=sidenav]');
     const tabsList = this.querySelectorAll('[data-tab=sidenav]');
 
     tabsList[0].classList.add('active-nav-icon');
 
-    // linksList.forEach((link) =>
-    //   link.addEventListener('click', (e) => {
-    //     e.preventDefault();
-
-    //     tabsList.forEach((tab) => {
-    //       tab.classList.toggle(
-    //         iconsClasses[e.currentTarget.name],
-    //         tab === link.parentElement
-    //       );
-    //     });
-    //   })
-    // );
     linksList.forEach((link) =>
       link.addEventListener('click', (e) => {
         e.preventDefault();
+        e.stopPropagation();
 
         tabsList.forEach((tab) => {
           if (

@@ -6,8 +6,8 @@ export const ContentCard = (media) => `
       <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem error ad impedit vel porro dolores architecto aut similique dicta mollitia expedita molestiae, quis pariatur libero sit voluptatibus temporibus cumque cupiditate.</p>
     </div>
     <div class="card-body border-top">
-      <button type="button" class="btn rounded-3 fw-bolder me-2" data-btn="save">Save to collection</button>
-      <button type="button" class="btn rounded-3 fw-bolder" data-btn="share">Share</button>
+      <button type="button" class="btn rounded-3 fw-bolder me-2 my-1" data-btn="save">Save to collection</button>
+      <button type="button" class="btn rounded-3 fw-bolder my-1" data-btn="share">Share</button>
     </div>
   </div>
 `;

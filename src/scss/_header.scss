@@ -36,6 +36,7 @@ label[data-btn='label'] {
 }
 
 .navbar {
+  background: inherit;
   padding: 0 198px !important;
   * {
     color: #666 !important;
@@ -58,7 +59,6 @@ section[data-box='content'] {
 
 .navbar-nav {
   width: 35%;
-  height: 71px;
   line-height: 71px;
 }
 

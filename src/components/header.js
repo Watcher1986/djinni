@@ -1,13 +1,13 @@
-import searchIcon from '../assets/icons/searchIcon.js';
-
 import './headerNav.js';
 
-export const Header = () => `
+import searchIcon from '../assets/icons/searchIcon.js';
+
+const headerTemplate = `
   <nav
     class="navbar navbar-expand-lg fixed-top border-bottom"
   >
     <div class="container-fluid p-0">
-      <top-navi></top-navi>
+      <top-nav></top-nav>
       <button
         class="navbar-toggler collapsed my-3"
         type="button"
@@ -19,16 +19,16 @@ export const Header = () => `
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="navbar-collapse expand justify-content-between" id="navbarCollapse">
+      <div class="navbar-collapse collapse justify-content-between" id="navbarCollapse">
         <ul class="navbar-nav gap-2 me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a class="nav-link py-0 active-sidebar" aria-current="page" href="/photos">Photos</a>
+            <a class="nav-link py-0" name='photos' data-link="topnav" aria-current="page" href="/photos">Photos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link py-0" href="#">Videos</a>
+            <a class="nav-link py-0" name='videos' data-link="topnav" href="/videos">Videos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link py-0" href="#">Podcasts</a>
+            <a class="nav-link py-0" name='podcasts' data-link="topnav" href="/podcasts">Podcasts</a>
           </li>
         </ul>
         <div class="d-flex flex-row gap-2" data-control="control">
@@ -70,37 +70,33 @@ export const Header = () => `
   </nav>
 `;
 
-// const iconsClasses = {
-//   allResourses: 'active-sidebar-icon',
-//   selfie: 'active-sidebar-selfie-icon',
-//   recent: 'active-sidebar-recent-icon',
-//   deleted: 'active-sidebar-icon',
-// };
+class Header extends HTMLElement {
+  constructor() {
+    super();
+    this.innerHTML = headerTemplate;
 
-// window.addEventListener('DOMContentLoaded', () => {
-//   const linksList = document.querySelectorAll('[data-icon]');
+    const menuBtn = this.querySelector('.navbar-toggler');
+    const expandMenu = this.querySelector('#navbarCollapse');
+    const navLinks = this.querySelectorAll('[data-link="topnav"]');
 
-//   linksList[0].classList.add('active-sidebar-icon');
+    navLinks.forEach((link) => {
+      if (link.getAttribute('href') === window.location.pathname) {
+        link.classList.add('active-sidebar');
+      }
+    });
 
-//   linksList.forEach((link) =>
-//     link.addEventListener('click', (e) => {
-//       e.preventDefault();
+    menuBtn.addEventListener('click', () => {
+      const menuClassesList = expandMenu.classList;
 
-//       linksList.forEach((tab) => {
-//         if (
-//           tab.classList.contains('active-sidebar-recent-icon') ||
-//           tab.classList.contains('active-sidebar-icon') ||
-//           tab.classList.contains('active-sidebar-selfie-icon')
-//         ) {
-//           tab.classList.remove(
-//             'active-sidebar-recent-icon',
-//             'active-sidebar-icon',
-//             'active-sidebar-selfie-icon'
-//           );
-//         }
-//       });
+      if (menuClassesList.contains('collapse')) {
+        menuClassesList.remove('collapse');
+        menuClassesList.add('expand');
+      } else if (menuClassesList.contains('expand')) {
+        menuClassesList.remove('expand');
+        menuClassesList.add('collapse');
+      }
+    });
+  }
+}
 
-//       link.classList.add(iconsClasses[e.currentTarget.name]);
-//     })
-//   );
-// });
+window.customElements.define('app-header', Header);
