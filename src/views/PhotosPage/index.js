@@ -1,13 +1,28 @@
 import AbstractView from '../AbstractView/index.js';
-// import '../../components/sidenav.js';
-import { ContentCard } from '../../components/contentCard';
+import ContentCard from '../../components/contentCard';
+
 import { getPhotos } from '../../api/photos';
-import { AppLayout } from '../../layout/appLayout';
+
+const parse = (str) => {
+  const parser = new DOMParser();
+
+  const doc = parser.parseFromString(str, 'text/html');
+
+  const nodes = doc.body.childNodes;
+  // `nodes` is now a collection of DOM nodes that you can iterate through
+  // for (let i = 0; i < nodes.length; i++) {
+  //   console.log(nodes[i]);
+  // }
+  return nodes;
+};
 
 export default class PhotosView extends AbstractView {
   constructor(params) {
     super(params);
     this.setTitle('Photos');
+
+    this.dataList;
+    // this.getClientParams();
   }
 
   async getViewPhotos() {
@@ -15,12 +30,59 @@ export default class PhotosView extends AbstractView {
     return photos;
   }
 
-  async getHtml() {
+  getClientParams(photos) {
+    const nodes = parse(photos);
+    // console.log(photos, nodes);
+    // if (!this.dataList) return;
+    // const p = nodes.querySelectorAll('[data-text="description"]');
+
+    const paragraphNodes = Array.from(nodes).filter(async (node) => {
+      let p;
+      try {
+        p = await node.querySelector('card-text');
+        // if (p) return p;
+        // node.nodeName === 'P';
+      } catch (error) {
+        console.log(error);
+      }
+      // console.log(typeof node);
+      // const p = node.querySelector('[data-text="description"]');
+      // if (p) return p;
+      // node.nodeName === 'P';
+      return p;
+    });
+
+    console.log('PARAGRAPHS => ', paragraphNodes);
+
+    // const lineHeight = parseInt(
+    //   window.getComputedStyle(p).getPropertyValue('line-height')
+    // );
+    // const height = this.p.clientHeight;
+    // const numLines = Math.round(height / lineHeight);
+
+    // console.log('Number of lines in the paragraph: ' + numLines, p);
+
+    // document.addEventListener('load', () => {
+    //   this.p = document.querySelector('[data-text="description"]');
+    //   console.log(this.p);
+    // });
+  }
+
+  async render() {
     const photos = await this.getViewPhotos();
 
-    const photosList = photos.map((photo) => ContentCard(photo)).join('');
+    const photosList = photos
+      .map((photo) => {
+        const card = new ContentCard(photo);
+        return card.getHtml();
+      })
+      .join('');
 
-    const template = () => `
+    this.getClientParams(photosList);
+
+    this.dataList = photosList;
+
+    const template = `
       <article class="d-flex justify-content-between align-items-center">
         <div>
           <h1>All photos</h1>
@@ -38,72 +100,7 @@ export default class PhotosView extends AbstractView {
         photosList ?? null
       }</section>
     `;
-    return AppLayout(template);
+
+    return template;
   }
-  // document.title = 'Photos';
-
-  // const photos = await getPhotos();
-
-  // return AppLayout(template);
 }
-
-// const iconsClasses = {
-//   allResourses: 'active-nav-icon',
-//   selfie: 'active-selfie-icon',
-//   recent: 'active-recent-icon',
-//   deleted: 'active-nav-icon',
-// };
-
-// const sidenavHandler = () => {
-//   const linksList = document.querySelectorAll('[data-link=sidenav]');
-//   const tabsList = document.querySelectorAll('[data-tab=sidenav]');
-
-//   // if (!linksList.length && !tabsList.length) return;
-
-//   console.log(tabsList, linksList);
-
-//   tabsList[0].classList.add('active-nav-icon');
-
-//   linksList.forEach((link) =>
-//     link.addEventListener('click', (e) => {
-//       e.preventDefault();
-
-//       tabsList.forEach((tab) => {
-//         if (
-//           tab.classList.contains('active-recent-icon') ||
-//           tab.classList.contains('active-nav-icon') ||
-//           tab.classList.contains('active-selfie-icon')
-//         ) {
-//           tab.classList.remove(
-//             'active-recent-icon',
-//             'active-nav-icon',
-//             'active-selfie-icon'
-//           );
-//         }
-//       });
-
-//       link.parentElement.classList.add(iconsClasses[e.currentTarget.name]);
-//     })
-//   );
-// };
-
-// window.addEventListener('click', (e) => {
-
-// })
-
-// window.addEventListener('DOMContentLoaded', sidenavHandler);
-
-// window.addEventListener('DOMContentLoaded', async () => {
-//   const photosContainer = document.querySelector('[data-box="list"]');
-//   const itemsCountElement = document.querySelector('[data-tip="count"]');
-
-//   const photos = await getPhotos();
-
-//   if (photos) {
-//     console.log('TYPE OF => ', typeof photos, photos);
-//     const photosList = photos.map((photo) => ContentCard(photo)).join('');
-
-//     photosContainer.innerHTML = await photosList;
-//     itemsCountElement.innerHTML = await photos.length;
-//   }
-// });

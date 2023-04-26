@@ -4,9 +4,11 @@ export default class ErrorPage extends AbstractView {
   constructor(params) {
     super(params);
     this.setTitle('');
+
+    console.log(window.location);
   }
 
-  async getHtml() {
+  async render() {
     return `
       <main class="d-flex justify-content-center align-items-center" id="not-found">
         <section>
