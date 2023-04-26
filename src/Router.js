@@ -1,27 +1,16 @@
-// import PhotosView from './views/PhotosPage/index.js';
-// import ErrorPage from './views/404';
-
-// // Define your routes
-// const routes = {
-//   '/': PhotosView,
-//   '/users': Users,
-//   '/users/:id': User,
-//   '/users/:id/profile': UserProfile,
-//   '/users/:id/settings': UserSettings,
-// };
+import { AppLayout } from './layout/appLayout';
 
 // Implement the Router class
 export default class Router {
   constructor(routes) {
     this.routes = routes;
     this.currentRoute = null;
+    this.view = document.querySelector('body');
+    this.viewContainer = null;
     this.init();
-    this.notFound();
-    this.view;
   }
 
   init() {
-    this.view = document.querySelector('body');
     window.addEventListener('popstate', (e) => {
       e.preventDefault();
       const url = e?.state?.url || window.location.pathname;
@@ -30,31 +19,60 @@ export default class Router {
     this.routeTo(window.location.pathname);
   }
 
-  async notFound() {
-    const component = new this.routes['404']();
-    if (this.currentRoute === null) {
-      this.view.innerHTML = await component.getHtml();
-    }
+  async initLayout() {
+    this.view.innerHTML = await AppLayout();
+    this.viewContainer = document.querySelector('[data-box="content"]');
+  }
+
+  setActiveNavLink(url) {
+    const links = document.querySelectorAll('[data-link="topnav"]');
+    const path = url === '/' ? '/photos' : url;
+
+    links.forEach((link) => {
+      if (link.href.includes(path)) {
+        link.classList.add('active-sidebar');
+      } else {
+        link.classList.remove('active-sidebar');
+      }
+    });
   }
 
   async routeTo(url) {
     const route = this.matchRoute(url);
+
     if (!route) {
+      const component = new this.routes['404']();
+      this.view.innerHTML = await component.render();
+
       this.currentRoute = null;
+      this.viewContainer = null;
       return;
     }
     const params = this.extractParams(route, url);
+
+    if (!this.viewContainer) await this.initLayout();
+    console.log(this.viewContainer, url);
+
     const component = new this.routes[route](params);
-    this.view.innerHTML = await component.getHtml();
+    this.setActiveNavLink(url);
+    this.viewContainer.innerHTML = await component.render();
+
     this.currentRoute = { route, component, params };
   }
 
   matchRoute(url) {
-    const matchingRoutes = Object.keys(this.routes).filter((route) => {
-      const regex = new RegExp(`^${route.replace(/:[^\s/]+/g, '([\\w-]+)')}$`);
-      return regex.test(url);
-    });
-    return matchingRoutes[0];
+    // Loop through routes and check for matches
+    for (let route in this.routes) {
+      const pattern = new RegExp(`^${route.replace(/:\w+/g, '(\\w+)')}$`);
+      const matches = url.match(pattern);
+
+      if (matches) {
+        return matches[0];
+      }
+    }
+
+    // No match found
+    return undefined;
   }
 
   extractParams(route, url) {
@@ -72,7 +90,9 @@ export default class Router {
   }
 
   navigateTo(url) {
-    history.pushState({ url }, null, url);
-    this.routeTo(url);
+    const path = new URL(url);
+
+    history.pushState({ url: path.pathname }, null, path.pathname);
+    this.routeTo(path.pathname);
   }
 }

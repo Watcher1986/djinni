@@ -4,28 +4,24 @@ import recentIcon from '../assets/icons/recentIcon';
 import selfieIcon from '../assets/icons/selfieIcon';
 
 const iconsClasses = {
-  allResourses: 'active-nav-icon',
-  selfie: 'active-selfie-icon',
+  'all-resourses': 'active-nav-icon',
+  selfies: 'active-selfie-icon',
   recent: 'active-recent-icon',
   deleted: 'active-nav-icon',
 };
 
 const sidenavTemplate = `
   <div class="position-relative py-2 rounded-3" data-tab="sidenav">
-    <a class="nav-link fw-bolder" href="${
-      location.pathname.split('/')[1]
-    }" name="allResourses" data-link="sidenav"><span class="position-absolute lh-0 top-50 translate-middle-y" data-icon="sidenav">${allResoursesIcon()}</span>All photos</a>
+    <a class="nav-link fw-bolder" href="/all-photos" name="all-resourses" data-link="sidenav"><span class="position-absolute lh-0 top-50 translate-middle-y" data-icon="sidenav">${allResoursesIcon()}</span>All photos</a>
   </div>
   <div class="position-relative py-2 rounded-3" data-tab="sidenav">
-    <a class="nav-link fw-bolder" href=${`/
-      ${location.pathname.split('/')[1]}/selfies
-    `} name="selfie" data-link="sidenav"><span class="position-absolute lh-0 top-50 translate-middle-y" style="left: 9px" data-icon="sidenav">${selfieIcon()}</span>Selfies</a>
+    <a class="nav-link fw-bolder" href="/selfies" name="selfies" data-link="sidenav"><span class="position-absolute lh-0 top-50 translate-middle-y" style="left: 9px" data-icon="sidenav">${selfieIcon()}</span>Selfies</a>
   </div>
   <div class="position-relative py-2 rounded-3" data-tab="sidenav">
-    <a class="nav-link fw-bolder" name="recent" data-link="sidenav"><span class="position-absolute lh-0 top-50 translate-middle-y" data-icon="sidenav">${recentIcon()}</span>Recent</a>
+    <a class="nav-link fw-bolder" href="/recent" name="recent" data-link="sidenav"><span class="position-absolute lh-0 top-50 translate-middle-y" data-icon="sidenav">${recentIcon()}</span>Recent</a>
   </div>
   <div class="position-relative py-2 rounded-3" data-tab="sidenav">
-    <a class="nav-link fw-bolder" name="deleted" data-link="sidenav"><span class="position-absolute lh-0 top-50 translate-middle-y" data-icon="sidenav">${basketIcon()}</span>Deleted</a>
+    <a class="nav-link fw-bolder" href="/deleted" name="deleted" data-link="sidenav"><span class="position-absolute lh-0 top-50 translate-middle-y" data-icon="sidenav">${basketIcon()}</span>Deleted</a>
   </div>
 `;
 
@@ -39,10 +35,11 @@ class SideNavbar extends HTMLElement {
 
     tabsList[0].classList.add('active-nav-icon');
 
+    console.log(window.location.pathname);
+
     linksList.forEach((link) =>
       link.addEventListener('click', (e) => {
         e.preventDefault();
-        e.stopPropagation();
 
         tabsList.forEach((tab) => {
           if (

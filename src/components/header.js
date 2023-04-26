@@ -77,13 +77,6 @@ class Header extends HTMLElement {
 
     const menuBtn = this.querySelector('.navbar-toggler');
     const expandMenu = this.querySelector('#navbarCollapse');
-    const navLinks = this.querySelectorAll('[data-link="topnav"]');
-
-    navLinks.forEach((link) => {
-      if (link.getAttribute('href') === window.location.pathname) {
-        link.classList.add('active-sidebar');
-      }
-    });
 
     menuBtn.addEventListener('click', () => {
       const menuClassesList = expandMenu.classList;
