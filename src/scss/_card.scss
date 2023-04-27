@@ -1,6 +1,24 @@
-.card-text {
+.hide-text {
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+}
+
+button[data-btn='more'],
+button[data-btn='less'] {
+  color: #292929;
+  font-weight: 500;
+  box-shadow: none;
+  border: none;
+  transition: color 0.5s linear;
+}
+
+button[data-btn='more']:hover,
+button[data-btn='less']:hover {
+  color: #c3d1de;
+}
+
+.card {
+  height: fit-content !important;
 }
