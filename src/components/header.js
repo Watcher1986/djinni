@@ -33,7 +33,7 @@ const headerTemplate = `
         </ul>
         <div class="d-flex flex-row gap-2" data-control="control">
           <form
-            role=""
+            role="input"
             class="input-group me-4"
             data-form="search-form"
           >

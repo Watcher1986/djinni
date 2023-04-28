@@ -35,8 +35,6 @@ class SideNavbar extends HTMLElement {
 
     tabsList[0].classList.add('active-nav-icon');
 
-    console.log(window.location.pathname);
-
     linksList.forEach((link) =>
       link.addEventListener('click', (e) => {
         e.preventDefault();

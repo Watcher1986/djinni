@@ -1,16 +1,21 @@
 {
   "name": "media-view",
   "version": "1.0.0",
-  "description": "",
+  "description": "Gallery SPA made with pure JS/HTML/SCSS/Bootstrap",
   "main": "main.js",
   "private": true,
   "author": "deniss2007@gmail.com",
   "scripts": {
-    "start": "webpack serve --mode=development",
+    "start": "webpack serve --mode=development --open",
     "build": "webpack build --mode=production",
     "test": "npm run build"
   },
-  "keywords": [],
+  "keywords": [
+    "JS",
+    "Bootstrap",
+    "SCSS",
+    "Axios"
+  ],
   "license": "ISC",
   "dependencies": {
     "@popperjs/core": "^2.11.7",

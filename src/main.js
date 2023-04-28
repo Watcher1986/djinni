@@ -25,21 +25,5 @@ window.addEventListener('click', (e) => {
   } else if (e.target.matches('#err-redirect')) {
     router.navigateTo(e.target.href);
   }
-
   return;
 });
-
-// window.addEventListener('DOMContentLoaded', (e) => {
-//   const navLinks = e.target.querySelectorAll('[data-link="topnav"]');
-
-//   console.log(navLinks);
-
-//   const path =
-//     window.location.pathname === '/' ? '/photos' : window.location.pathname;
-
-//   navLinks.forEach((link) => {
-//     if (link.getAttribute('href') === path) {
-//       link.classList.add('active-sidebar');
-//     }
-//   });
-// });

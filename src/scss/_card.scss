@@ -22,3 +22,22 @@ button[data-btn='less']:hover {
 .card {
   height: fit-content !important;
 }
+
+button[data-btn='save'],
+button[data-btn='share'] {
+  padding: 7px 16px 9px 16px;
+  border-radius: 8px;
+  height: 40px;
+  line-height: 0;
+  white-space: nowrap;
+}
+
+button[data-btn='save'] {
+  background: #ed7135;
+  color: white;
+}
+
+button[data-btn='share'] {
+  border: 2px solid #ebebeb;
+  color: #292929;
+}

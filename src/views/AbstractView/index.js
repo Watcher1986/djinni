@@ -1,6 +1,6 @@
 export default class {
-  constructor(params) {
-    this.params = params;
+  constructor(config) {
+    this.config = config;
   }
 
   setTitle(title) {
