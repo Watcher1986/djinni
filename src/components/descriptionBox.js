@@ -2,10 +2,6 @@ export default class DescriptionBox extends HTMLElement {
   constructor() {
     super();
 
-    this.author;
-
-    // <h4 class="card-title fw-bolder"></h4>
-
     this.innerHTML = `
       <p class="card-text mb-0" data-text="description">
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem error ad impedit vel porro dolores architecto aut similique dicta mollitia expedita molestiae, quis pariatur libero sit voluptatibus temporibus cumque cupiditate.
@@ -21,25 +17,8 @@ export default class DescriptionBox extends HTMLElement {
     `;
 
     this.description = this.querySelector('[data-text="description"]');
-
-    // console.log('DESCRIPTION => ', this.description);
-
     this.observeParagraph();
-
-    // this.setAuthor.bind(this);
   }
-
-  // setAuthor(author) {
-  //   const t = `<h4 class='card-title fw-bolder'>${author}</h4>`;
-  //   const title = this.querySelector('.card-title');
-  //   title.innerText = author;
-
-  //   // this.prependChild(title);
-  //   title.classList.add('mt-7');
-  //   console.log('SET AUTHOR => ', author, title, this);
-
-  //   this.author = author;
-  // }
 
   observeParagraph() {
     const btnBox = this.querySelector('[data-box="hint-btns"]');
@@ -47,7 +26,6 @@ export default class DescriptionBox extends HTMLElement {
     const lessBtn = btnBox.querySelector('[data-btn="less"]');
 
     const observer = new ResizeObserver((entries) => {
-      console.log('OBSERVER => ', entries);
       const { target } = entries[0];
 
       const lineHeight = parseInt(
@@ -61,12 +39,13 @@ export default class DescriptionBox extends HTMLElement {
         target.classList.add('hide-text');
         lessBtn.classList.add('d-none');
 
-        lessBtn.addEventListener('click', (e) => {
+        lessBtn.addEventListener('click', () => {
           target.classList.add('hide-text');
           moreBtn.classList.remove('d-none');
           lessBtn.classList.add('d-none');
         });
-        moreBtn.addEventListener('click', (e) => {
+
+        moreBtn.addEventListener('click', () => {
           target.classList.remove('hide-text');
           moreBtn.classList.add('d-none');
           lessBtn.classList.remove('d-none');
@@ -74,13 +53,6 @@ export default class DescriptionBox extends HTMLElement {
 
         observer.unobserve(target);
       }
-
-      console.log(
-        'Number of lines in the paragraph: ' + numLines,
-        numLines,
-        lineHeight,
-        height
-      );
     });
 
     observer.observe(this.description);

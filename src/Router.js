@@ -51,11 +51,14 @@ export default class Router {
     const params = this.extractParams(route, url);
 
     if (!this.viewContainer) await this.initLayout();
-    console.log(this.viewContainer, url);
 
-    const component = new this.routes[route](params);
+    const component = new this.routes[route]({
+      params,
+      container: this.viewContainer,
+    });
+
     this.setActiveNavLink(url);
-    this.viewContainer.innerHTML = await component.render();
+    await component.render();
 
     this.currentRoute = { route, component, params };
   }

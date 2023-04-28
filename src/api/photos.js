@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export async function getPhotos() {
+export async function getPhotos(page) {
   const { data } = await axios.get(
-    'https://picsum.photos/v2/list?page=1&limit=9'
+    `https://picsum.photos/v2/list?page=${page}&limit=10`
   );
   return data;
 }

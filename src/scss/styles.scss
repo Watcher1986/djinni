@@ -1,7 +1,9 @@
-@import 'header';
-@import 'sidenav';
-@import 'card';
-@import '404';
+@use 'header';
+@use 'sidenav';
+@use 'card';
+@use 'title-section';
+@use 'not-found';
+
 @import '~bootstrap/scss/bootstrap';
 
 html {
@@ -19,6 +21,7 @@ body {
 main {
   width: 100%;
   min-height: 80vh;
+  padding: 0 194px;
 }
 
 app-header {
@@ -48,4 +51,25 @@ label {
 
 p {
   color: #666;
+}
+
+section[data-box='content'] {
+  width: 65%;
+}
+
+section[data-box='list'] {
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 992px) {
+  section[data-box='content'] {
+    width: 100% !important;
+  }
+  section[data-box='list'] {
+    grid-template-columns: 1fr;
+  }
+  main {
+    padding: 0 16px;
+    width: 100% !important;
+  }
 }

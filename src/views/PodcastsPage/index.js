@@ -1,18 +1,20 @@
 import AbstractView from '../AbstractView/index.js';
 
 export default class PodcastsView extends AbstractView {
-  constructor(params) {
-    super(params);
+  constructor(config) {
+    super(config);
     this.setTitle('Podcasts');
   }
 
-  async render() {
-    const template = `
+  init() {
+    this.pageViewContainer.innerHTML = `
       <section class="d-flex justify-content-center align-items-center h-100">
         <h1>Podcasts page</h1>
       </section>
     `;
+  }
 
-    return template;
+  async render() {
+    this.init();
   }
 }

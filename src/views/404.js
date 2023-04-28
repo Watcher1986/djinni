@@ -1,11 +1,9 @@
 import AbstractView from './AbstractView/index.js';
 
 export default class ErrorPage extends AbstractView {
-  constructor(params) {
-    super(params);
+  constructor(config) {
+    super(config);
     this.setTitle('');
-
-    console.log(window.location);
   }
 
   async render() {
