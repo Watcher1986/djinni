@@ -27,3 +27,6 @@ window.addEventListener('click', (e) => {
   }
   return;
 });
+
+const initialTheme = JSON.parse(localStorage.getItem('client-theme'));
+initialTheme && document.body.classList.add(initialTheme);
