@@ -4,6 +4,8 @@ export default class PodcastsView extends AbstractView {
   constructor(config) {
     super(config);
     this.setTitle('Podcasts');
+
+    this.pageViewContainer = config.container;
   }
 
   init() {

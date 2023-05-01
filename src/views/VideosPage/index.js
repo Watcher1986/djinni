@@ -4,6 +4,8 @@ export default class VideosView extends AbstractView {
   constructor(config) {
     super(config);
     this.setTitle('Videos');
+
+    this.pageViewContainer = config.container;
   }
 
   init() {

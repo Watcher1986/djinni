@@ -10,6 +10,10 @@ input[data-input='search'] {
   }
 }
 
+a[data-icon='sidebar']:hover {
+  cursor: pointer;
+}
+
 div[data-control='control'] {
   width: 65% !important;
 }
@@ -37,6 +41,12 @@ button[data-btn='signin'] {
 }
 
 select[data-select='lang'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill="none" stroke="#666" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m2 5 6 6 6-6"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
   color: #666 !important;
   text-align: left;
   font-weight: 400;
@@ -100,6 +110,10 @@ select[data-select='lang'] {
   }
   .container-fluid {
     padding: 0 12px !important;
+  }
+  .active-sidebar {
+    color: #fff !important;
+    border-bottom: none !important;
   }
   nav[data-box='mobro'] {
     display: flex !important;

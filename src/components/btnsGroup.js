@@ -12,8 +12,8 @@ export default class BtnsGroup extends HTMLElement {
       </div>
     `;
 
-    this.group = document.querySelector('[data-btn="group"]');
-    this.newest = document.querySelector('#newest');
+    this.group = this.querySelector('[data-btn="group"]');
+    this.newest = this.querySelector('#newest');
     this.active = null;
 
     this.handleBtnGroup();

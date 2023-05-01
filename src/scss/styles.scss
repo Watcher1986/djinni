@@ -2,6 +2,7 @@
 @use 'sidenav';
 @use 'card';
 @use 'title-section';
+@use 'theme';
 @use 'not-found';
 
 @import '~bootstrap/scss/bootstrap';
@@ -27,7 +28,7 @@ main {
 app-header {
   display: block;
   background: white;
-  height: 71px;
+  height: 70px;
   width: 100vw;
 }
 

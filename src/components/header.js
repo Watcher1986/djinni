@@ -1,4 +1,5 @@
-import './headerNav.js';
+import './headerNav';
+import './toggleTheme';
 
 import searchIcon from '../assets/icons/searchIcon.js';
 
@@ -34,7 +35,7 @@ const headerTemplate = `
         <div class="d-flex flex-row gap-2" data-control="control">
           <form
             role="input"
-            class="input-group me-4"
+            class="input-group me-2"
             data-form="search-form"
           >
             <span
@@ -61,9 +62,10 @@ const headerTemplate = `
             <option value="2">German</option>
             <option value="3">French</option>
           </select>
-          <button type="button" class="btn my-auto ps-0 pe-0" data-btn="signin">
+          <button type="button" class="btn my-auto ps-0 pe-0 me-2" data-btn="signin">
             Sign in
           </button>
+          <toggle-theme class="my-auto"></toggle-theme>
         </div>
       </div>
     </div>

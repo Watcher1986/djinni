@@ -14,45 +14,45 @@ div[data-tab='sidenav'] {
 }
 
 .active-recent-icon {
-  color: white !important;
+  color: #fff !important;
   background: #ed7135;
 
   a {
-    color: white;
+    color: #fff;
 
     * path {
-      stroke: white;
+      stroke: #fff;
     }
   }
 }
 
 .active-selfie-icon {
-  color: white !important;
+  color: #fff !important;
   background: #ed7135;
 
   a {
-    color: white;
+    color: #fff;
 
     svg {
       :not(:first-child) {
-        fill: white;
+        fill: #fff;
       }
       :first-child {
-        stroke: white;
+        stroke: #fff;
       }
     }
   }
 }
 
 .active-nav-icon {
-  color: white !important;
+  color: #fff !important;
   background: #ed7135;
 
   a {
-    color: white;
+    color: #fff;
 
     * path {
-      fill: white;
+      fill: #fff;
     }
   }
 }
